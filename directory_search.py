@@ -7,6 +7,27 @@ def search_dir_return_path(bottom_directory, string_to_search, file_type):
             if (string_to_search in name) and (name.endswith(file_type)):
                 files_to_return.append(str(os.path.join(root, name)))
     return(files_to_return)
+
+def search_dir_return_path_two_strings(bottom_directory, list_of_strings_to_search, file_type):
+    
+    files_to_return = []
+    for root, dirs, files in os.walk(bottom_directory, topdown=False):        
+        for name in files:
+        	if (list_of_strings_to_search[0] and list_of_strings_to_search[1] in name) and (name.endswith(file_type)):
+        		files_to_return.append(str(os.path.join(root, name)))
+        		
+    return(files_to_return)
+   
+def search_dir_return_path_multiple_strings(bottom_directory, list_of_strings_to_search, file_type):
+    ##modify this to search for combination of an arbitrary list of strings in a filename
+    files_to_return = []
+    for root, dirs, files in os.walk(bottom_directory, topdown=False):        
+        for name in files:
+            for string in list_of_strings_to_search:
+            	if (string_to_search in name) and (name.endswith(file_type)):
+                	files_to_return.append(str(os.path.join(root, name)))
+                	
+    return(files_to_return)
     
 def search_dir_for_file_return_path(bottom_directory, file_name):
     file_path = 'not found'
